@@ -1,10 +1,11 @@
 # Our instrument
 
-**Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/ht26-a1-group-01/ -->
+**Play it here:** <!-- https://github.com/IDBCourses/ht26-a1-group-beginner-4.git  -->
 
 **Group:** <!-- Names of everyone in the group -->
 
-<!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
+<!-- Our instrument is a piano which can be changed with periodic pitch wobble and: -->
+One or two sentences: what kind of instrument is it, and what is it like to play? -->
 
 ## How to play
 
