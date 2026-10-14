@@ -39,7 +39,6 @@ function update() {
 
   setTimeout(update, 100); // call update() again in 100 milliseconds
 }
-
 // ---------- Use ----------
 // Use the state to make sound. This is called every 100ms.
 function use() {
