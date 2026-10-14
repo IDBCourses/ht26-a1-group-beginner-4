@@ -5,6 +5,7 @@
 **Group:** <!-- Names of everyone in the group -->
 
 <!-- Our instrument is a piano which can be changed with periodic pitch wobble and: -->
+
 One or two sentences: what kind of instrument is it, and what is it like to play? -->
 
 ## How to play
