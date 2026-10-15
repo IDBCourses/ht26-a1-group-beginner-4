@@ -1,28 +1,27 @@
 # Our instrument
 
-**Play it here:** <!-- Paste your GitHub Pages link here, e.g. https://idbcourses.github.io/ht26-a1-group-01/ -->
+**Play it here:** https://github.com/IDBCourses/ht26-a1-group-beginner-4
 
 **Group:** Anna Berecz, Isabella Cuartas Nobre, Johan Kenning, Ieva Petravice.
 
 <!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
 
+Our instrument is a piano which can be changed with either periodic pitch wobble or: FILL IN
+
 ## How to play
 
 <!-- Which keys do what? Fill in the table, and add a row for every key or group of keys. -->
 
-|   Key   | What it does                                  |
-| ------- | ----------------------------------------------|
-|   `A`   | Plays a C4 while you hold it down             |
-|   `S`   | Plays a D4 while you hold it down             |
-|   `D`   | Plays a E4 while you hold it down             |
-|   `F`   | Plays a F4 while you hold it down             |
-|   `G`   | Plays a G4 while you hold it down             |
-|   `H`   | Plays a A4 while you hold it down             |
-|   `J`   | Plays a B4 while you hold it down             |
-| `Shift` | Plays a Tone.Vibrato while you hold it down   |
-
-
-
+| Key     | What it does                                |
+| ------- | ------------------------------------------- |
+| `A`     | Plays a C4 while you hold it down           |
+| `S`     | Plays a D4 while you hold it down           |
+| `D`     | Plays a E4 while you hold it down           |
+| `F`     | Plays a F4 while you hold it down           |
+| `G`     | Plays a G4 while you hold it down           |
+| `H`     | Plays a A4 while you hold it down           |
+| `J`     | Plays a B4 while you hold it down           |
+| `Shift` | Plays a Tone.Vibrato while you hold it down |
 
 <!-- Anything else a player needs to know: how to get started, combinations of keys, a good thing to try first. -->
 
