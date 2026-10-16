@@ -23,10 +23,22 @@
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
 const exampleNote = "C4"; // the note it plays
+const testKey = "s";
 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: which octave you're playing in, or whether a drone is on.
+
+// I write code here:
+
+// Here's a function to make a selected note lower by a semitone - we'll need this to transpose some notes in a scale to make it sound sad.
+function lowerHalfStep(exampleNote) {
+ return Tone.Frequency(exampleNote).transpose(-1).toNote()};
+
+
+ // now I need to determine the valuables up in the state and/or settings
+
+
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -57,7 +69,7 @@ function keyDown(event) {
 
     // Example: replace this with your own instrument.
     if (event.key === exampleKey) {
-      synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+      synth.triggerAttackRelease(exampleNote, Tone.now()); // keeps sounding until triggerRelease
     }
   }
 }
@@ -67,8 +79,8 @@ function keyUp(event) {
   console.log("Key up:", event.key);
 
   // Example: replace this with your own instrument.
-  if (event.key === exampleKey) {
-    synth.triggerRelease(exampleNote, Tone.now());
+  if (event.key === testKey) {
+    synth.triggerAttackRelease(lowerHalfStep(exampleNote), Tone.now());
   }
 }
 
