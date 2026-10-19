@@ -46,6 +46,7 @@ let melody = [
 // ---------- State ----------
 
 let vibrato = 0.0;
+
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
 
 
