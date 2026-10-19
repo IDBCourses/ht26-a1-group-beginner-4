@@ -19,7 +19,7 @@ Put vibrato on it to create wave sound
 | `ArrowUp`   | Raises the frequency while you hold it down |
 | `ArrowDown` | Lowers the frequency while you hold it down |
 
-Start with pressing the keynote "a" to hear the original melody. Continuine experementing with the different keynotes to hear the changes in the melody.
+Start with pressing the keynote "a" to hear the melody. Continue experimenting with the different keynotes to hear the changes in the melody. To change the octave, click 'ArrowUp'or 'ArrowDown' first and then press the keynote "a" to play the melody with the changed octave. To add add wobbly effect to the melody click "v" 
 
 ---
 
