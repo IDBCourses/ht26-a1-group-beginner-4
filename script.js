@@ -22,6 +22,8 @@
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
+const exampleNote = "C4"; // the note it plays
+//const vibratoKey = "v";
 const exampleNote = "C4"; // the note that plays when you press the example key
 // prettier-ignore 
 let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"];
@@ -30,11 +32,15 @@ let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: which octave you're playing in, or whether a drone is on.
+let vibrato = 0.0;
 
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
+const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
+let vibratoEffect = new Tone.Vibrato(3, vibrato);
+synth.chain(vibratoEffect, Tone.Destination);
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
 const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note
 //const frequency = new Tone.Frequency(exampleNote).transpose(7); // the frequency of the example note, transposed up 7 semitones
@@ -123,6 +129,13 @@ function keyDown(event) {
   playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
   }
 
+    // Example: replace this with your own instrument.
+    if (event.key === exampleKey) {
+      synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+    }
+    if (event.key === "v") {
+      vibratoEffect.depth.value = 0.5;
+    }
   }
 }
 
@@ -134,6 +147,11 @@ function keyUp(event) {
   if (event.key === exampleKey) {
     synth.triggerRelease(melody, Tone.now());
   }
+  if (event.key === "v") {
+    vibrato = 0.0;
+    vibratoEffect.depth.value = 0;
+    console.log(" vibrato stops");
+  }
 }
 
 // ---------- Setup ----------
@@ -141,7 +159,6 @@ function keyUp(event) {
 function setup() {
   update(); // start the update loop
   use(); // start the use loop
-
   // Put your event listener code here
   window.addEventListener("keydown", keyDown);
   window.addEventListener("keyup", keyUp);
