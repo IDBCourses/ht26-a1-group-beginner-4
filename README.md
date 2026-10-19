@@ -12,16 +12,13 @@ Our instrument is a piano which can be changed with either periodic pitch wobble
 
 <!-- Which keys do what? Fill in the table, and add a row for every key or group of keys. -->
 
-| Key     | What it does                                |
-| ------- | ------------------------------------------- |
-| `A`     | Plays a C4 while you hold it down           |
-| `S`     | Plays a D4 while you hold it down           |
-| `D`     | Plays a E4 while you hold it down           |
-| `F`     | Plays a F4 while you hold it down           |
-| `G`     | Plays a G4 while you hold it down           |
-| `H`     | Plays a A4 while you hold it down           |
-| `J`     | Plays a B4 while you hold it down           |
-| `Shift` | Plays a Tone.Vibrato while you hold it down |
+| Key       | What it does                                |
+| --------- | ------------------------------------------- |
+|   `A`     | Plays Twinkle Twinkle little star           |
+|   `S`     | Plays Twinkle Twinkle little star sad       |
+|   `V`     | Plays a Tone.Vibrato while you hold it down |
+| `ArrowUp` | Raises the frequency while you hold it down |
+|`ArrowDown`| Lowers the frequency while you hold it down |
 
 <!-- Anything else a player needs to know: how to get started, combinations of keys, a good thing to try first. -->
 
