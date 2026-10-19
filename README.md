@@ -1,26 +1,25 @@
 # Our instrument
 
-**Play it here:** https://github.com/IDBCourses/ht26-a1-group-beginner-4
+**Play it here:** WE NEED THE CODE FROM DAVID
 
 **Group:** Anna Berecz, Isabella Cuartas Nobre, Johan Kenning, Ieva Petravice.
 
-<!-- One or two sentences: what kind of instrument is it, and what is it like to play? -->
-
-Our instrument is a piano which can be changed with either periodic pitch wobble or: FILL IN
+Our instrument is a piano that plays the melody twinkle twinkle little star.
+It can be changed to play in minor
+Raise and lower the frequency in an octave
+Put vibrato on it to create wave sound
 
 ## How to play
 
-<!-- Which keys do what? Fill in the table, and add a row for every key or group of keys. -->
+| Key         | What it does                                |
+| ----------- | ------------------------------------------- |
+| `A`         | Plays Twinkle Twinkle little star           |
+| `S`         | Plays Twinkle Twinkle little star sad       |
+| `V`         | Plays a Tone.Vibrato while you hold it down |
+| `ArrowUp`   | Raises the frequency while you hold it down |
+| `ArrowDown` | Lowers the frequency while you hold it down |
 
-| Key       | What it does                                |
-| --------- | ------------------------------------------- |
-|   `A`     | Plays Twinkle Twinkle little star           |
-|   `S`     | Plays Twinkle Twinkle little star sad       |
-|   `V`     | Plays a Tone.Vibrato while you hold it down |
-| `ArrowUp` | Raises the frequency while you hold it down |
-|`ArrowDown`| Lowers the frequency while you hold it down |
-
-<!-- Anything else a player needs to know: how to get started, combinations of keys, a good thing to try first. -->
+Start with pressing the keynote "a" to hear the original melody. Continuine experementing with the different keynotes to hear the changes in the melody.
 
 ---
 

@@ -36,9 +36,17 @@ let frequencyMultiplier = 1; // the multiplier for the frequency of the note, wh
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
-const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note, Anna
+const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note
+//const frequency = new Tone.Frequency(exampleNote).transpose(7); // the frequency of the example note, transposed up 7 semitones
+//const transposedNote = frequency.toNote(); // returns the note name of the transposed frequency
+//Tone.Frequency(transposedNote).harmonize([0, 3, 7]);
 
-//Anna's function to play a melodyí with the current frequency multiplier
+function playNote() {
+  const newFrequency = baseFrequency * frequencyMultiplier;
+  const final_frequency = Tone.Frequency(newFrequency).toNote(); // returns the note name of the transposed frequency
+  synth.triggerAttackRelease(final_frequency, "8n");
+  console.log("Playing note with frequency:", newFrequency, "Hz");
+}
 
 function raiseFrequency() {
   frequencyMultiplier *= 2;
@@ -104,7 +112,7 @@ function keyDown(event) {
   if (event.repeat === false) {
     //console.log("Key down:", event.key);
       if (event.key === "ArrowUp") {
-  raiseFrequency(); 
+  raiseFrequency();
   //console.log("ArrowUp pressed");
   }
   if (event.key === "ArrowDown") {
