@@ -45,7 +45,7 @@ function playNote() {
   const final_frequency = Tone.Frequency(newFrequency).toNote(); // returns the note name of the transposed frequency
   synth.triggerAttackRelease(final_frequency, "8n");
   console.log("Playing note with frequency:", newFrequency, "Hz");
-} 
+}
 
 function raiseFrequency() {
   frequencyMultiplier *= 2;
@@ -107,7 +107,7 @@ function keyDown(event) {
   if (event.repeat === false) {
     //console.log("Key down:", event.key);
       if (event.key === "ArrowUp") {
-  raiseFrequency(); 
+  raiseFrequency();
   //console.log("ArrowUp pressed");
   }
   if (event.key === "ArrowDown") {
