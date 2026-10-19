@@ -25,10 +25,29 @@ const exampleKey = "a"; // the key that plays the example note
 const sadKey = "s";
 let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"]; // e, a, b need to go down
 
+let melody = [
+  "C4",
+  "C4",
+  "G4",
+  "G4",
+  "A4",
+  "A4",
+  "G4",
+  "F4",
+  "F4",
+  "E4",
+  "E4",
+  "D4",
+  "D4",
+  "C4",
+];
+// Johan
 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: which octave you're playing in, or whether a drone is on.
+let vibrato = 0.0;
+let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
 
 // (Ieva) I write code here:
 // (Ieva) If we have a melody as an array, we need a way to pull specific notes from the melody to transpose them, to make the melody sound sad.
@@ -64,13 +83,38 @@ function makeSad(melody) {
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
-const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
+const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
+//const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
+//const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note
+let vibratoEffect = new Tone.Vibrato(3, vibrato); //Isabella
+synth.chain(vibratoEffect, Tone.Destination); //Isabella
+
+function raiseFrequency() {
+  //Anna
+  frequencyMultiplier *= 2;
+  //console.log(`Frequency multiplier is ${frequencyMultiplier}`);
+
+  if (frequencyMultiplier > 4) {
+    frequencyMultiplier = 1;
+    console.log(`Frequency multiplier is ${frequencyMultiplier}`);
+    //console.log("Frequency multiplier reset to 0.25.");
+  }
+}
+
+function lowerFrequency() {
+  //Anna
+  frequencyMultiplier /= 2;
+  if (frequencyMultiplier < 0.25) {
+    frequencyMultiplier = 4;
+    console.log("Frequency multiplier reset to 4.");
+  }
+}
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
   // Example: replace this with your own instrument.
-
+  //playNote()
   setTimeout(update, 100); // call update() again in 100 milliseconds
 }
 
@@ -82,13 +126,48 @@ function use() {
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time a key goes down.
+function playMelody() {
+  // Johan
+  const start = Tone.now() + 0.1;
+  for (let i = 0; i < melody.length; i++) {
+    time = start + i * 0.4;
+
+    if (i >= 7) {
+      time = time + 0.6;
+    }
+    //Anna
+    const notebasefrequency = Tone.Frequency(melody[i]).toFrequency();
+    const newFrequency = notebasefrequency * frequencyMultiplier;
+    const final_frequency = Tone.Frequency(newFrequency).toNote();
+
+    synth.triggerAttackRelease(final_frequency, "8n", time);
+  }
+}
+
 function keyDown(event) {
   Tone.start(); // browsers only allow sound after the player has pressed something
 
   // Holding a key down sends keydown again and again. Only react to the first one.
   if (event.repeat === false) {
-    console.log("Key down:", event.key);
-
+    //console.log("Key down:", event.key);
+    if (event.key === "ArrowUp") {
+      //Anna
+      raiseFrequency();
+      //console.log("ArrowUp pressed");
+    }
+    if (event.key === "ArrowDown") {
+      //Anna
+      lowerFrequency();
+      //console.log("ArrowDown pressed");
+    }
+    if (event.key === exampleKey) {
+      //Johan
+      playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+    }
+    if (event.key === "v") {
+      //Isabella
+      vibratoEffect.depth.value = 0.5;
+    }
     // Example: replace this with your own instrument.
 
     if (event.key === exampleKey) {
@@ -104,12 +183,27 @@ if (event.key === sadKey) {
   // Example: replace this with your own instrument.
 
 
+// Runs every time a key comes up.
+function keyUp(event) {
+  //console.log("Key up:", event.key);
+
+  // Example: replace this with your own instrument.
+  if (event.key === exampleKey) {
+    synth.triggerRelease(melody, Tone.now());
+  }
+  if (event.key === "v") {
+    //Isabella
+    vibrato = 0.0;
+    vibratoEffect.depth.value = 0;
+    console.log(" vibrato stops");
+  }
+}
+
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
 function setup() {
   update(); // start the update loop
   use(); // start the use loop
-
   // Put your event listener code here
   window.addEventListener("keydown", keyDown);
 
