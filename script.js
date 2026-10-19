@@ -22,23 +22,45 @@
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
-const exampleNote = "C4"; // the note it plays
 const testKey = "s";
+const testMelody = ["C4", "D4", "E4", "A4", "G4", "B4", "D4", "C4"];
+
 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: which octave you're playing in, or whether a drone is on.
 
-// I write code here:
+// (Ieva) I write code here:
 
+// (Ieva) If we have a melody as an array, we need a way to pull specific notes from the melody to transpose them, to make the melody sound sad.
+
+
+let notesToLower = [2, 3, 5]; // a separate array with selected notes from testMelody to lower.
+
+// The following should play any melody.
+function playTestMelody(melody) {
+for (let i = 0; i < melody.length; i++) {
+console.log("pass " + i + ": " + melody[i]);
+synth.triggerAttackRelease(melody[i], "8n", Tone.now() + i * 0.4);
+  }
+}
 // Here's a function to make a selected note lower by a semitone - we'll need this to transpose some notes in a scale to make it sound sad.
-function lowerHalfStep(exampleNote) {
- return Tone.Frequency(exampleNote).transpose(-1).toNote()};
+function lowerHalfStep(note) {
+ return Tone.Frequency(note).transpose(-1).toNote();
+}
 
 
- // now I need to determine the valuables up in the state and/or settings
-
-
+function makeSad(melody) {
+  const sadMelody = [];
+  for (let i = 0; i < melody.length; i++) {
+    if (notesToLower.includes(i)) {
+      sadMelody.push(lowerHalfStep(melody[i]));
+    } else {
+      sadMelody.push(melody[i]);
+    }
+  }
+  return sadMelody;
+}
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
@@ -68,21 +90,19 @@ function keyDown(event) {
     console.log("Key down:", event.key);
 
     // Example: replace this with your own instrument.
+
     if (event.key === exampleKey) {
-      synth.triggerAttackRelease(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+     playTestMelody(testMelody); // keeps sounding until triggerRelease
     }
+
+if (event.key === testKey) {
+    playTestMelody(makeSad(testMelody));
   }
 }
-
-// Runs every time a key comes up.
-function keyUp(event) {
-  console.log("Key up:", event.key);
+}
 
   // Example: replace this with your own instrument.
-  if (event.key === testKey) {
-    synth.triggerAttackRelease(lowerHalfStep(exampleNote), Tone.now());
-  }
-}
+
 
 // ---------- Setup ----------
 // Setup is run once, at the start of the program. It sets everything up for us!
@@ -92,7 +112,8 @@ function setup() {
 
   // Put your event listener code here
   window.addEventListener("keydown", keyDown);
-  window.addEventListener("keyup", keyUp);
+
 }
 
 setup(); // Always remember to call setup()!
+
