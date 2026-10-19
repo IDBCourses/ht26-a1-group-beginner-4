@@ -22,7 +22,8 @@
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
-// prettier-ignore
+const exampleNote = "C4"; // the note that plays when you press the example key
+// prettier-ignore 
 let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"];
 // Johan
 
@@ -35,17 +36,9 @@ let frequencyMultiplier = 1; // the multiplier for the frequency of the note, wh
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
 const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
-const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note
-//const frequency = new Tone.Frequency(exampleNote).transpose(7); // the frequency of the example note, transposed up 7 semitones
-//const transposedNote = frequency.toNote(); // returns the note name of the transposed frequency
-//Tone.Frequency(transposedNote).harmonize([0, 3, 7]);
+const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note, Anna
 
-function playNote() {
-  const newFrequency = baseFrequency * frequencyMultiplier;
-  const final_frequency = Tone.Frequency(newFrequency).toNote(); // returns the note name of the transposed frequency
-  synth.triggerAttackRelease(final_frequency, "8n");
-  console.log("Playing note with frequency:", newFrequency, "Hz");
-} 
+//Anna's function to play a melodyí with the current frequency multiplier
 
 function raiseFrequency() {
   frequencyMultiplier *= 2;
@@ -95,8 +88,12 @@ function playMelody() {
     if (i >= 7) {
       time = time + 0.6;
     }
-
-    synth.triggerAttackRelease(melody[i], "8n", start + time);
+  //Anna's freuqency   
+  const notebasefrequency = Tone.Frequency(melody[i]).toFrequency();
+  const newFrequency = notebasefrequency * frequencyMultiplier;
+  const final_frequency = Tone.Frequency(newFrequency).toNote();
+  
+    synth.triggerAttackRelease(final_frequency, "8n", time);
   }
 } // Johan
 
@@ -114,15 +111,9 @@ function keyDown(event) {
   lowerFrequency();
   //console.log("ArrowDown pressed");
   }
-  if (event.key.toLowerCase() === exampleKey) {
-  playNote();
-  //console.log("Example key pressed");
+  if (event.key === exampleKey) {
+  playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
   }
-
-    // Example: replace this with your own instrument.
-    if (event.key === exampleKey) {
-      playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
-    }
 
   }
 }
@@ -133,7 +124,7 @@ function keyUp(event) {
 
   // Example: replace this with your own instrument.
   if (event.key === exampleKey) {
-    synth.triggerRelease(exampleNote, Tone.now());
+    synth.triggerRelease(melody, Tone.now());
   }
 }
 
