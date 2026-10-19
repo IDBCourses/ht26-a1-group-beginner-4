@@ -22,7 +22,9 @@
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
-const exampleNote = "C4"; // the note it plays
+// prettier-ignore
+let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"];
+// Johan
 
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
@@ -48,6 +50,19 @@ function use() {
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time a key goes down.
+function playMelody() {
+  const start = Tone.now() + 0.1;
+  for (let i = 0; i < melody.length; i++) {
+    time = start + i * 0.4;
+
+    if (i >= 7) {
+      time = time + 0.6;
+    }
+
+    synth.triggerAttackRelease(melody[i], "8n", start + time);
+  }
+} // Johan
+
 function keyDown(event) {
   Tone.start(); // browsers only allow sound after the player has pressed something
 
@@ -57,7 +72,7 @@ function keyDown(event) {
 
     // Example: replace this with your own instrument.
     if (event.key === exampleKey) {
-      synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+      playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
     }
   }
 }
