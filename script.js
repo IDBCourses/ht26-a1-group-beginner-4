@@ -23,20 +23,22 @@
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
 const exampleNote = "C4"; // the note it plays
-
+//const vibratoKey = "v";
 // ---------- State ----------
 // State variables are the parts of your program that change over time.
 // For example: which octave you're playing in, or whether a drone is on.
+let vibrato = 0.0;
 
 // ---------- Sound ----------
 // Make the instruments and plug them into the speakers.
-const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
+const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
+let vibratoEffect = new Tone.Vibrato(3, vibrato);
+synth.chain(vibratoEffect, Tone.Destination);
 
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
   // Example: replace this with your own instrument.
-
   setTimeout(update, 100); // call update() again in 100 milliseconds
 }
 
@@ -59,6 +61,9 @@ function keyDown(event) {
     if (event.key === exampleKey) {
       synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
     }
+    if (event.key === "v") {
+      vibratoEffect.depth.value = 0.5;
+    }
   }
 }
 
@@ -70,6 +75,11 @@ function keyUp(event) {
   if (event.key === exampleKey) {
     synth.triggerRelease(exampleNote, Tone.now());
   }
+  if (event.key === "v") {
+    vibrato = 0.0;
+    vibratoEffect.depth.value = 0;
+    console.log(" vibrato stops");
+  }
 }
 
 // ---------- Setup ----------
@@ -77,7 +87,6 @@ function keyUp(event) {
 function setup() {
   update(); // start the update loop
   use(); // start the use loop
-
   // Put your event listener code here
   window.addEventListener("keydown", keyDown);
   window.addEventListener("keyup", keyUp);
