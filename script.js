@@ -23,7 +23,6 @@
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
 const sadKey = "s";
-let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"]; // e, a, b need to go down
 
 let melody = [
   "C4",
@@ -54,13 +53,6 @@ let frequencyMultiplier = 1; // the multiplier for the frequency of the note, wh
 
 let notesToLower = [4, 5, 9, 10]; // a separate array with selected notes from testMelody to lower.
 
-// The following should play any melody.
-function playTestMelody(melody) {
-for (let i = 0; i < melody.length; i++) {
-console.log("pass " + i + ": " + melody[i]);
-synth.triggerAttackRelease(melody[i], "8n", Tone.now() + i * 0.4);
-  }
-}
 // Here's a function to make a selected note lower by a semitone - we'll need this to transpose some notes in a scale to make it sound sad.
 function lowerHalfStep(note) {
  return Tone.Frequency(note).transpose(-1).toNote();
@@ -126,7 +118,7 @@ function use() {
 
 // ---------- Controls (Event Handlers) ----------
 // Runs every time a key goes down.
-function playMelody() {
+function playMelody(melody) {
   // Johan
   const start = Tone.now() + 0.1;
   for (let i = 0; i < melody.length; i++) {
@@ -162,7 +154,7 @@ function keyDown(event) {
     }
     if (event.key === exampleKey) {
       //Johan
-      playMelody(); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+      playMelody(melody); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
     }
     if (event.key === "v") {
       //Isabella
@@ -170,16 +162,11 @@ function keyDown(event) {
     }
     // Example: replace this with your own instrument.
 
-    if (event.key === exampleKey) {
-     playTestMelody(melody); // keeps sounding until triggerRelease
-    }
-
 if (event.key === sadKey) {
-    playTestMelody(makeSad(melody));
+    playMelody(makeSad(melody));
   }
 }
 }
-
   // Example: replace this with your own instrument.
 
 
