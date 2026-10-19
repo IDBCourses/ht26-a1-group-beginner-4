@@ -40,6 +40,7 @@ let melody = [
   "D4",
   "C4",
 ];
+
 // Johan
 
 // ---------- State ----------
@@ -55,7 +56,7 @@ let notesToLower = [4, 5, 9, 10]; // a separate array with selected notes from t
 
 // Here's a function to make a selected note lower by a semitone - we'll need this to transpose some notes in a scale to make it sound sad.
 function lowerHalfStep(note) {
- return Tone.Frequency(note).transpose(-1).toNote();
+  return Tone.Frequency(note).transpose(-1).toNote();
 }
 
 // The following runs through the melody array and checks if the item position is the positions from "notesToLower" array
@@ -145,16 +146,17 @@ function keyDown(event) {
     if (event.key === "ArrowUp") {
       //Anna
       raiseFrequency();
-      //console.log("ArrowUp pressed");
+      console.log("ArrowUp pressed");
     }
     if (event.key === "ArrowDown") {
       //Anna
       lowerFrequency();
-      //console.log("ArrowDown pressed");
+      console.log("ArrowDown pressed");
     }
     if (event.key === exampleKey) {
       //Johan
-      playMelody(melody); // synth.triggerAttack(exampleNote, Tone.now()); // keeps sounding until triggerRelease
+      playMelody(melody);
+      console.log(exampleKey);
     }
     if (event.key === "v") {
       //Isabella
@@ -162,13 +164,12 @@ function keyDown(event) {
     }
     // Example: replace this with your own instrument.
 
-if (event.key === sadKey) {
-    playMelody(makeSad(melody));
+    if (event.key === sadKey) {
+      playMelody(makeSad(melody));
+    }
   }
 }
-}
-  // Example: replace this with your own instrument.
-
+// Example: replace this with your own instrument.
 
 // Runs every time a key comes up.
 function keyUp(event) {
@@ -193,8 +194,7 @@ function setup() {
   use(); // start the use loop
   // Put your event listener code here
   window.addEventListener("keydown", keyDown);
-
+  window.addEventListener("keyup", keyUp);
 }
 
 setup(); // Always remember to call setup()!
-
