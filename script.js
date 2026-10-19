@@ -22,8 +22,8 @@
 // Settings variables should contain all of the "fixed" parts of your programs
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
-const testKey = "s";
-const testMelody = ["C4", "D4", "E4", "A4", "G4", "B4", "D4", "C4"];
+const sadKey = "s";
+let melody = ["C4", "C4", "G4", "G4", "A4", "A4", "G4", "F4", "F4", "E4", "E4", "D4", "D4", "C4"]; // e, a, b need to go down
 
 
 // ---------- State ----------
@@ -31,11 +31,9 @@ const testMelody = ["C4", "D4", "E4", "A4", "G4", "B4", "D4", "C4"];
 // For example: which octave you're playing in, or whether a drone is on.
 
 // (Ieva) I write code here:
-
 // (Ieva) If we have a melody as an array, we need a way to pull specific notes from the melody to transpose them, to make the melody sound sad.
 
-
-let notesToLower = [2, 3, 5]; // a separate array with selected notes from testMelody to lower.
+let notesToLower = [4, 5, 9, 10]; // a separate array with selected notes from testMelody to lower.
 
 // The following should play any melody.
 function playTestMelody(melody) {
@@ -49,7 +47,9 @@ function lowerHalfStep(note) {
  return Tone.Frequency(note).transpose(-1).toNote();
 }
 
-
+// The following runs through the melody array and checks if the item position is the positions from "notesToLower" array
+// If it does, it transposes it down by a semitone and pushes it to a new array "sadMelody", if it doesn't, it pushes the original note.
+// In that way we have a sad copy without messing with the og melody.
 function makeSad(melody) {
   const sadMelody = [];
   for (let i = 0; i < melody.length; i++) {
@@ -92,11 +92,11 @@ function keyDown(event) {
     // Example: replace this with your own instrument.
 
     if (event.key === exampleKey) {
-     playTestMelody(testMelody); // keeps sounding until triggerRelease
+     playTestMelody(melody); // keeps sounding until triggerRelease
     }
 
-if (event.key === testKey) {
-    playTestMelody(makeSad(testMelody));
+if (event.key === sadKey) {
+    playTestMelody(makeSad(melody));
   }
 }
 }
