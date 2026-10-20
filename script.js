@@ -23,7 +23,7 @@
 // For example: which key does what, which notes you can play, the tempo.
 const exampleKey = "a"; // the key that plays the example note
 const sadKey = "s";
-
+// Johan
 let melody = [
   "C4",
   "C4",
@@ -41,11 +41,11 @@ let melody = [
   "C4",
 ];
 
-// Johan
 
 // ---------- State ----------
 
 let vibrato = 0.0;
+//(at0162)
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
 
 
@@ -75,25 +75,22 @@ function makeSad(melody) {
 // ---------- Sound ----------
 
 const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
-//const synth = new Tone.PolySynth(Tone.Synth).toDestination(); // can play several notes at once
-//const baseFrequency = Tone.Frequency(exampleNote).toFrequency(); // the frequency of the example note
+
 let vibratoEffect = new Tone.Vibrato(3, vibrato); //Isabella
 synth.chain(vibratoEffect, Tone.Destination); //Isabella
 
+//(at0162)
 function raiseFrequency() {
-  //Anna
   frequencyMultiplier *= 2;
-  //console.log(`Frequency multiplier is ${frequencyMultiplier}`);
 
   if (frequencyMultiplier > 4) {
     frequencyMultiplier = 1;
     console.log(`Frequency multiplier is ${frequencyMultiplier}`);
-    //console.log("Frequency multiplier reset to 0.25.");
   }
 }
 
+//(at0162)
 function lowerFrequency() {
-  //Anna
   frequencyMultiplier /= 2;
   if (frequencyMultiplier < 0.25) {
     frequencyMultiplier = 4;
@@ -125,7 +122,7 @@ function playMelody(melody) {
     if (i >= 7) {
       time = time + 0.6;
     }
-    //Anna
+    //(at0162)
     const notebasefrequency = Tone.Frequency(melody[i]).toFrequency();
     const newFrequency = notebasefrequency * frequencyMultiplier;
     const final_frequency = Tone.Frequency(newFrequency).toNote();
@@ -139,23 +136,23 @@ function keyDown(event) {
 
   if (event.repeat === false) {
     //console.log("Key down:", event.key);
+    //(at0162)
     if (event.key === "ArrowUp") {
-      //Anna
       raiseFrequency();
       console.log("ArrowUp pressed");
     }
+    //(at0162)
     if (event.key === "ArrowDown") {
-      //Anna
       lowerFrequency();
       console.log("ArrowDown pressed");
     }
+     //Johan
     if (event.key === exampleKey) {
-      //Johan
       playMelody(melody);
       console.log(exampleKey);
     }
+     //Isabella
     if (event.key === "v") {
-      //Isabella
       vibratoEffect.depth.value = 0.5;
     }
     // (as8164)
@@ -172,8 +169,8 @@ function keyUp(event) {
   if (event.key === exampleKey) {
     synth.triggerRelease(melody, Tone.now());
   }
+  //Isabella
   if (event.key === "v") {
-    //Isabella
     vibrato = 0.0;
     vibratoEffect.depth.value = 0;
     console.log(" vibrato stops");
