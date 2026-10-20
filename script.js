@@ -1,29 +1,7 @@
-/*
- * IDB Programming: A1 Modelling — a musical instrument
- *
- * All of the code for your instrument goes in this file. It's split into sections:
- *   settings — the "fixed" parts of your program
- *   state    — the parts of your program that change over time
- *   sound    — the Tone.js instruments and effects
- *   update   — updates the state every 100ms, if necessary
- *   use      — applies the state to make sound every 100ms, if necessary
- *   controls — what happens when a key goes down or comes up
- *   setup    — starts everything
- *
- * There is no loop in this assignment. Nothing happens until the player presses
- * a key, and every key event follows the same two steps:
- *   1. update: change the state, based on which key it was
- *   2. use:    make sound from the state
- *
- * Tone.js documentation: https://tonejs.github.io/docs/15.1.22/
- */
-
 // ---------- Settings ----------
-// Settings variables should contain all of the "fixed" parts of your programs
-// For example: which key does what, which notes you can play, the tempo.
-const exampleKey = "a"; // the key that plays the example note
+const exampleKey = "a";
 const sadKey = "s";
-// Johan
+
 let melody = [
   "C4",
   "C4",
@@ -39,7 +17,7 @@ let melody = [
   "D4",
   "D4",
   "C4",
-];
+]; // (as0477 Johan)
 
 // ---------- State ----------
 //(at1021)
@@ -73,7 +51,7 @@ function makeSad(melody) {
 
 // ---------- Sound ----------
 
-const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
+const synth = new Tone.PolySynth(Tone.Synth);
 
 let vibratoEffect = new Tone.Vibrato(3, vibrato); //(at1021)
 synth.chain(vibratoEffect, Tone.Destination); //(at1021)
@@ -109,7 +87,6 @@ function lowerFrequency() {
 }
 
 // ---------- Update ----------
-// Update the state. This is called every 100ms.
 function update() {
   setTimeout(update, 100);
 }
@@ -122,14 +99,16 @@ function use() {
 
 // ---------- Controls (Event Handlers) ----------
 
+// (as0477 Johan)
 function playMelody(melody) {
-  // Johan
-  const start = Tone.now() + 0.1;
+  // Defines a function that takes the melody from the arrays in let melody.
+  const start = Tone.now() + 0.1; // adds a slight buffer when a keynote is pressed
   for (let i = 0; i < melody.length; i++) {
-    time = start + i * 0.4;
+    // goes through the notes in the melody
+    time = start + i * 0.4; // creates a rhytm so there 0.4 seconds between every note
 
     if (i >= 7) {
-      time = time + 0.6;
+      time = time + 0.6; // creates a paus between note 7 and 8 for 1 second indicates the start the second melody
     }
     //(at0162)
     const notebasefrequency = Tone.Frequency(melody[i]).toFrequency();
@@ -155,7 +134,7 @@ function keyDown(event) {
       lowerFrequency();
       console.log("ArrowDown pressed");
     }
-    //Johan
+    // (as0477 Johan)
     if (event.key === exampleKey) {
       playMelody(melody);
       console.log(exampleKey);
