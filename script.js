@@ -21,7 +21,7 @@ let melody = [
 
 // ---------- State ----------
 //(at1021)
-let vibrato = 0.0;
+let vibrato = 0.0; //Setting vibrato to zero so the melody initially plays without the vibrato effect
 
 //(at0162)
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
@@ -54,14 +54,14 @@ function makeSad(melody) {
 const synth = new Tone.PolySynth(Tone.Synth);
 
 let vibratoEffect = new Tone.Vibrato(3, vibrato); //(at1021)
-synth.chain(vibratoEffect, Tone.Destination); //(at1021)
+synth.chain(vibratoEffect, Tone.Destination); //(at1021)This is the effect the synth is chained through
 
-//(at1021)
+//(at1021) This function turns vibrato on by setting the depth at 0.5, and it's called when "v" is pressed in keyDown
 function startVibrato() {
   vibratoEffect.depth.value = 0.5;
   console.log(" Vibrato is activated");
 }
-//(at1021)
+//(at1021) This function stops vibrato by setting the depth to 0, and it's called when "v" is pressed in keyUp
 function stopVibrato() {
   vibratoEffect.depth.value = 0;
   console.log(" Vibrato stops");
