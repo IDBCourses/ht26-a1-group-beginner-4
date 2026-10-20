@@ -20,8 +20,9 @@ let melody = [
 ]; // (as0477 Johan)
 
 // ---------- State ----------
-
+//(at1021)
 let vibrato = 0.0;
+
 //(at0162)
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
 
@@ -52,8 +53,19 @@ function makeSad(melody) {
 
 const synth = new Tone.PolySynth(Tone.Synth);
 
-let vibratoEffect = new Tone.Vibrato(3, vibrato); //Isabella
-synth.chain(vibratoEffect, Tone.Destination); //Isabella
+let vibratoEffect = new Tone.Vibrato(3, vibrato); //(at1021)
+synth.chain(vibratoEffect, Tone.Destination); //(at1021)
+
+//(at1021)
+function startVibrato() {
+  vibratoEffect.depth.value = 0.5;
+  console.log(" Vibrato is activated");
+}
+//(at1021)
+function stopVibrato() {
+  vibratoEffect.depth.value = 0;
+  console.log(" Vibrato stops");
+}
 
 //(at0162)
 function raiseFrequency() {
@@ -127,9 +139,9 @@ function keyDown(event) {
       playMelody(melody);
       console.log(exampleKey);
     }
-    //Isabella
+    //(at1021)
     if (event.key === "v") {
-      vibratoEffect.depth.value = 0.5;
+      startVibrato();
     }
     // (as8164)
     if (event.key === sadKey) {
@@ -144,11 +156,9 @@ function keyUp(event) {
   if (event.key === exampleKey) {
     synth.triggerRelease(melody, Tone.now());
   }
-  //Isabella
+  //(at1021)
   if (event.key === "v") {
-    vibrato = 0.0;
-    vibratoEffect.depth.value = 0;
-    console.log(" vibrato stops");
+    stopVibrato();
   }
 }
 
