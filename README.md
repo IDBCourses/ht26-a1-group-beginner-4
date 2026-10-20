@@ -1,11 +1,11 @@
 # Our instrument
 
-**Play it here:** WE NEED THE CODE FROM DAVID
+**Play it here:** https://idbcourses.github.io/ht26-a1-group-beginner-4/
 
 **Group:** Anna Berecz, Isabella Cuartas Nobre, Johan Kenning, Ieva Petravice.
 
 Our instrument is a piano that plays the melody twinkle twinkle little star.
-It can be changed to play in minor
+It can be played in minor
 Raise and lower the frequency in an octave
 Put vibrato on it to create wave sound
 
