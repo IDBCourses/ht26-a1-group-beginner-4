@@ -41,13 +41,12 @@ let melody = [
   "C4",
 ];
 
-
 // ---------- State ----------
-
+//(at1021)
 let vibrato = 0.0;
+
 //(at0162)
 let frequencyMultiplier = 1; // the multiplier for the frequency of the note, which can be changed by the player
-
 
 let notesToLower = [4, 5, 9, 10]; // (as8164) a separate array with selected notes from testMelody to lower.
 
@@ -76,8 +75,19 @@ function makeSad(melody) {
 
 const synth = new Tone.PolySynth(Tone.Synth); // can play several notes at once
 
-let vibratoEffect = new Tone.Vibrato(3, vibrato); //Isabella
-synth.chain(vibratoEffect, Tone.Destination); //Isabella
+let vibratoEffect = new Tone.Vibrato(3, vibrato); //(at1021)
+synth.chain(vibratoEffect, Tone.Destination); //(at1021)
+
+//(at1021)
+function startVibrato() {
+  vibratoEffect.depth.value = 0.5;
+  console.log(" Vibrato is activated");
+}
+//(at1021)
+function stopVibrato() {
+  vibratoEffect.depth.value = 0;
+  console.log(" Vibrato stops");
+}
 
 //(at0162)
 function raiseFrequency() {
@@ -101,7 +111,6 @@ function lowerFrequency() {
 // ---------- Update ----------
 // Update the state. This is called every 100ms.
 function update() {
-
   setTimeout(update, 100);
 }
 
@@ -146,14 +155,14 @@ function keyDown(event) {
       lowerFrequency();
       console.log("ArrowDown pressed");
     }
-     //Johan
+    //Johan
     if (event.key === exampleKey) {
       playMelody(melody);
       console.log(exampleKey);
     }
-     //Isabella
+    //(at1021)
     if (event.key === "v") {
-      vibratoEffect.depth.value = 0.5;
+      startVibrato();
     }
     // (as8164)
     if (event.key === sadKey) {
@@ -162,18 +171,15 @@ function keyDown(event) {
   }
 }
 
-
 function keyUp(event) {
   //console.log("Key up:", event.key);
 
   if (event.key === exampleKey) {
     synth.triggerRelease(melody, Tone.now());
   }
-  //Isabella
+  //(at1021)
   if (event.key === "v") {
-    vibrato = 0.0;
-    vibratoEffect.depth.value = 0;
-    console.log(" vibrato stops");
+    stopVibrato();
   }
 }
 
