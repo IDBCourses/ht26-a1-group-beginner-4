@@ -11,13 +11,13 @@ Put vibrato on it to create wave sound
 
 ## How to play
 
-| Key         | What it does                                |
-| ----------- | ------------------------------------------- |
-| `A`         | Plays Twinkle Twinkle little star           |
-| `S`         | Plays Twinkle Twinkle little star sad       |
-| `V`         | Plays a Tone.Vibrato while you hold it down |
-| `ArrowUp`   | Raises the frequency while you hold it down |
-| `ArrowDown` | Lowers the frequency while you hold it down |
+| Key         | What it does                                           |
+| ----------- | ------------------------------------------------------ |
+| `A`         | Plays Twinkle Twinkle little star                      |
+| `S`         | Plays Twinkle Twinkle little star sad                  |
+| `V`         | Plays a Tone.Vibrato while you hold it down            |
+| `ArrowUp`   | Raises the frequency in octaves while you hold it down |
+| `ArrowDown` | Lowers the frequency in octaves while you hold it down |
 
 Start with pressing the keynote "a" to hear the melody. Continue experimenting with the different keynotes to hear the changes in the melody. To change the octave, click 'ArrowUp'or 'ArrowDown' first (or at the same time) and then press the keynote "a" to play the melody with the changed octave. To add add wobbly effect to the melody click "v".
 
